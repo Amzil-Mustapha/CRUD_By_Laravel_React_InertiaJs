@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ArticleController extends Controller
 {
@@ -12,7 +13,9 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        $articles = Article::where('user_id', session('id'))->get();
+        return Inertia::render('Articles', compact('articles'));
+        
     }
 
     /**

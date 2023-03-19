@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\GlobalController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -15,12 +17,14 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    // return view('welcome');
     return Inertia::render('Home');
-});
+})->middleware('login')->name('home');
 
-Route::get('/test', function () {
-    // return view('welcome');
-    $musta = 'Mustapha';
-    return Inertia::render('Test', compact('musta'));
-})->name('test');
+Route::get('/login', function () {
+    return Inertia::render('Sign_in');
+})->name('login');
+
+Route::post('/Onlogin', [GlobalController::class, 'login']);
+Route::get('/logout', [GlobalController::class, 'logout']);
+
+Route::get('/article/index', [ArticleController::class, 'index'])->middleware('login');

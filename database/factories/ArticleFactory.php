@@ -19,7 +19,7 @@ class ArticleFactory extends Factory
         return [
             'title' => fake()->text(30),
             'body' => fake()->text(300),
-            'user_id' => fake()->text(300),
+            'user_id' => fake()->numberBetween(1, 100),
         ];
     }
 }
