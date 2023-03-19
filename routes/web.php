@@ -28,3 +28,6 @@ Route::post('/Onlogin', [GlobalController::class, 'login']);
 Route::get('/logout', [GlobalController::class, 'logout']);
 
 Route::get('/article/index', [ArticleController::class, 'index'])->middleware('login');
+Route::get('/article/show/{id}', [ArticleController::class, 'show'])->middleware('login');
+Route::get('/article/edit/{id}', [ArticleController::class, 'edit'])->middleware('login');
+Route::get('/article/update/{id}', [ArticleController::class, 'update'])->middleware('login');
